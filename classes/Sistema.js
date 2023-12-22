@@ -3,17 +3,18 @@ class Sistema {
     this.pos = createVector(width / 2, height / 2);
     this.ps = [];
     this.t = random(100);
+    this.color = color(random(100, 200), random(150, 255), 255);
   }
   update() {
     //0. Aumentar el tiempo
     this.t += 0.01;
 
     //1. Actualizacion de posicion
-    this.pos.x = map(noise(this.t, 0, 1, 0, width));
-    this.pos.y = map(noise(this.t + 10, 0, 1, 0, height));
+    this.pos.x = map(noise(this.t), 0, 1, 0, width);
+    this.pos.y = map(noise(this.t + 10), 0, 1, 0, height);
 
     //2. Agregamos particulas
-    this.p = new Particula(this.pos.x, this.pos.y);
+    this.p = new Particula(this.pos.x, this.pos.y, this.color);
     this.ps.push(this.p);
 
     //3. Verificar cuales estan muertas y llamar a los macrofagos
